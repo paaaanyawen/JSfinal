@@ -1,0 +1,12 @@
+<% layout('layout') %>
+<h1>這是首頁，我是<%- myName %></h1>
+
+<ul>
+  <% for(item in list){  %>
+        <li>  <%= list[item].n %>   </li>
+    <% }; %>
+</ul>
+
+
+<%= tag %> 
+<%- tag %>
