@@ -4,10 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <title> <%= title %> </title>
 </head>
 <body>
-    <header style="background:red">hello</header>
+    <header>
+        <a href="/">
+            <img id="logo" src="/images/logo.png" alt="logo" onclick="index.ejs" >
+        </a>
+        <ul class="header_list logintype">
+            <a href="/member/login"><li>登入</li></a>
+            <a href="/member/register"><li>註冊</li></a>
+            <a href="/member/cart"><li>購物車</li></a>
+        </ul>
+        <ul class="header_list logouttype">                       
+                <a href="/member/cart"><li>購物車</li></a>
+                <a href="" onclick="logout()"><li>登出</li></a>
+            </ul>
+        <div class="clear"></div>
+    </header>
+    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    <script>
+        //firebase
+        var config = {
+            apiKey: "AIzaSyBDM7pYJrAc2ye1D-hEvMHccc9tmh7HiGk",
+            authDomain: "jsfinal-38f10.firebaseapp.com",
+            databaseURL: "https://jsfinal-38f10.firebaseio.com",
+            projectId: "jsfinal-38f10",
+            
+            storageBucket: "",
+            messagingSenderId: "692214053813"
+        };
+        firebase.initializeApp(config);
+
+        var user = firebase.auth().currentUser;
+        console.log("user"+user);
+
+        var Logintype=document.getElementsByClassName("logintype");
+        var Logouttype=document.getElementsByClassName("logouttype");
+        if(user != null){            
+            Logintype[0].style.display = 'none';
+            Logouttype[0].style.display = 'block';
+        }else{
+            Logintype[0].style.display = 'block';
+            Logouttype[0].style.display = 'none';
+        }
+        
+
+        function logout(){
+            firebase.auth().signOut().then(function() {
+                console.log("User sign out!");
+            }, function(error) {
+            console.log("User sign out error!");
+            })
+            Logintype[0].style.display = 'block';
+            Logouttype[0].style.display = 'none';
+        }
+    </script>
     <%- body %>
 </body>
+
 </html>

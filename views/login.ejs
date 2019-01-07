@@ -1,0 +1,81 @@
+<% layout('layout') %>
+<body>
+    <div class="center">
+        <h1>登入</h1>
+        <h2>電子郵件</h2>
+        <input type="text" id="account">
+        <h2>密碼</h2>
+        <input type="password" id="pass"><br><br>
+        <button onclick="login()">登入</button>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    <script>
+        //firebase
+        var config = {
+            apiKey: "AIzaSyBDM7pYJrAc2ye1D-hEvMHccc9tmh7HiGk",
+            authDomain: "jsfinal-38f10.firebaseapp.com",
+            databaseURL: "https://jsfinal-38f10.firebaseio.com",
+            projectId: "jsfinal-38f10",
+            
+            storageBucket: "",
+            messagingSenderId: "692214053813"
+        };
+        firebase.initializeApp(config);
+
+        function login(){
+            Account = document.getElementById("account").value;
+            Password = document.getElementById("pass").value;
+
+            var database = firebase.database();
+            if(Password!="")
+            {
+                var check=1;
+                firebase.auth().signInWithEmailAndPassword(Account, Password).catch(function(error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    check=0;
+                    alert("Login failed!"+errorMessage);
+                });
+                if(check==1){
+                    alert("登入成功");
+                    //window.location.reload("");
+                    var user = firebase.auth().currentUser;
+                    console.log("user"+user);
+                }
+            }
+            else
+            {
+                alert("The password can not be empty!")
+            }
+            var userLogin;
+            firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                userLogin = user;
+                console.log("User is logined", user)
+            } else {
+                userLogin = null;
+                console.log("User is not logined yet.");
+            }
+            });
+            // database.ref('user').once('value',function(snapshot){
+            //     var list=snapshot.val();
+            //     var accCheck=0;
+            //     for(item in list){
+            //         if(Account == list[item].account){
+            //             accCheck=1;
+            //             if(Password == list[item].pwd){
+            //                 alert("登入成功");
+            //             }else{
+            //                 alert("密碼錯誤");
+            //             }
+            //         }
+            //     }
+            //     if(accCheck==0){
+            //         alert("無此帳號");
+            //     }
+            // })
+        }
+    </script>  
+    <%- data %>
+</body>
+ 

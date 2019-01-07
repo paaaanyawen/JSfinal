@@ -1,8 +1,52 @@
 body {
-  padding: 50px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "微軟正黑體"
 }
 
 a {
-  color: #00B7FF;
+  color: red;
+}
+header{
+  background-color: #000000;
+}
+#logo{
+  padding: 10px;
+  height: 60px;
+}
+.header_list{
+  float:right;
+  line-height: 60px;
+  padding-right: 20px;
+}
+.header_list li{
+  float: left;
+  list-style-type:none ;
+  padding-right: 5px;
+  font-size: 20px;
+  font-family:"微軟正黑體";
+  color: white;
+}
+.clear{
+  clear: both;
+}
+.center{
+  width:60% ;
+  margin: 0 auto;
+}
+.product{
+  position: relative;
+  float: left;
+  width: 30%;
+  padding:1.65%;
+  
+}
+.product img{
+  width: 100%;
+}
+.product p{
+  font-size: 20px;
+  position: absolute;
+  left: 40%;
+
 }

@@ -1,5 +1,32 @@
+<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+<script>
+    var config = {
+        apiKey: "AIzaSyBDM7pYJrAc2ye1D-hEvMHccc9tmh7HiGk",
+        authDomain: "jsfinal-38f10.firebaseapp.com",
+        databaseURL: "https://jsfinal-38f10.firebaseio.com",
+        projectId: "jsfinal-38f10",
+        storageBucket: "",
+        messagingSenderId: "692214053813"
+    };
+    firebase.initializeApp(config);
+</script>
+
 <% layout('layout') %>
-<h1>這是首頁，我是<%- myName %></h1>
+<div>
+    <div class="product">
+        <img src="/images/yeezy350.jpg" alt="">
+        <p>yeezy350</p>
+    </div>
+    <div class="product">
+        <img src="/images/yeezy350v2.jpg" alt="">
+        <p>yeezy350v2</p>
+    </div>
+    <div class="product">
+        <img src="/images/yeezy700.jpg" alt="">
+        <p>yeezy700</p>
+    </div>
+</div>
+<!-- <h1>這是首頁，我是<%- myName %></h1>
 
 <ul>
   <% for(item in list){  %>
@@ -7,6 +34,5 @@
     <% }; %>
 </ul>
 
-
 <%= tag %> 
-<%- tag %>
+<%- tag %> -->

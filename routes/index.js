@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+// Initialize Firebase
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
  
@@ -8,6 +10,7 @@ router.get('/', function(req, res, next) {
         1:{n:'sss'},
         2:{n:'aaa'}
     };
+
 
     res.render('index', { 
         title: 'hello', 
