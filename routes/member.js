@@ -23,4 +23,9 @@ router.get('/cart', function (req, res, next) {
 
 });
 
+router.get('/product1', function (req, res, next) {
+    res.render('product1', { title: 'yeezy350',data :'' });
+
+});
+
 module.exports = router;

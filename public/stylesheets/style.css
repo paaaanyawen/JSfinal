@@ -47,6 +47,10 @@ header{
 .product p{
   font-size: 20px;
   position: absolute;
-  left: 40%;
+  left: 35%;
 
+}
+.product_page img{
+  width: 300px;
+  float: left;
 }
