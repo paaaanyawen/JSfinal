@@ -4,9 +4,6 @@ body {
   font-family: "微軟正黑體"
 }
 
-a {
-  color: red;
-}
 header{
   background-color: #000000;
 }
@@ -17,7 +14,7 @@ header{
 .header_list{
   float:right;
   line-height: 60px;
-  padding-right: 20px;
+  padding-right: 30px;
 }
 .header_list li{
   float: left;
@@ -53,4 +50,18 @@ header{
 .product_page img{
   width: 300px;
   float: left;
+}
+.cart_table{
+  padding: 30px;
+}
+.cart_table th{
+  border-bottom-style: solid;
+  width: 3%;
+}
+.cart_table td{
+  text-align: center;
+  height:40px;
+}
+.setOrder{
+  float: right;
 }

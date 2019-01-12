@@ -1,40 +1,21 @@
-<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
-<script>
-    var config = {
-        apiKey: "AIzaSyBDM7pYJrAc2ye1D-hEvMHccc9tmh7HiGk",
-        authDomain: "jsfinal-38f10.firebaseapp.com",
-        databaseURL: "https://jsfinal-38f10.firebaseio.com",
-        projectId: "jsfinal-38f10",
-        storageBucket: "",
-        messagingSenderId: "692214053813"
-    };
-    firebase.initializeApp(config);
-</script>
-
 <% layout('layout') %>
 <div>
-    <a href="/member/product1">
+    <a href="/product/yeezy350">
         <div class="product">
             <img src="/images/yeezy350.jpg" alt="">
             <p>yeezy350 $200</p>            
         </div>
     </a>
-    <div class="product">
-        <img src="/images/yeezy350v2.jpg" alt="">
-        <p>yeezy350v2 $100</p>        
-    </div>
-    <div class="product">
-        <img src="/images/yeezy700.jpg" alt="">
-        <p>yeezy700 $150</p>        
-    </div>
+    <a href="/product/yeezy350v2">
+        <div class="product">
+            <img src="/images/yeezy350v2.jpg" alt="">
+            <p>yeezy350v2 $100</p>        
+        </div>
+    </a>
+    <a href="/product/yeezy700">
+        <div class="product">
+            <img src="/images/yeezy700.jpg" alt="">
+            <p>yeezy700 $150</p>        
+        </div>
+    </a>
 </div>
-<!-- <h1>這是首頁，我是<%- myName %></h1>
-
-<ul>
-  <% for(item in list){  %>
-        <li>  <%= list[item].n %>   </li>
-    <% }; %>
-</ul>
-
-<%= tag %> 
-<%- tag %> -->
