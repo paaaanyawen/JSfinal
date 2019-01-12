@@ -16,7 +16,17 @@ router.get('/profile', function (req, res, next) {
 });
 
 router.get('/order', function (req, res, next) {
-    res.render('order', { title: '訂單查詢',logStatus: req.cookies.status }); 
+    if(req.cookies.status){
+        admin.ref('order/'+req.cookies.status.uid).once('value',function(snapshot){
+            myOrder=snapshot.val();
+            res.render('order', { title: '訂單查詢',
+                                logStatus: req.cookies.status,
+                                message:'',
+                                myOrder:myOrder});
+        })        
+    }else{
+        res.render('order', { title: '訂單查詢',logStatus: req.cookies.status, message:'請先登入' });
+    } 
 });
 
 router.get('/cart', function (req, res, next) {
@@ -34,7 +44,7 @@ router.get('/cart', function (req, res, next) {
                         str+='<tr"><td>'+list[item].product[pitem].productName+'</td>'+                            
                             '<td>'+list[item].product[pitem].size+'</td>'+
                             '<td>'+list[item].product[pitem].amount+'</td>'+
-                            '<td>'+parseInt(list[item].product[pitem].price)*parseInt(list[item].product[pitem].amount)+'</td>'+
+                            '<td>'+list[item].product[pitem].price+'</td>'+
                             '<td><form action="delete_cart" method="post">'+
                                 '<input type="hidden" value="'+item+'" name="item">'+
                                 '<input type="hidden" value="'+pitem+'" name="pitem">'+
@@ -73,7 +83,7 @@ router.post('/set_order',function(req,res,next){
     admin.ref('user/'+req.cookies.status.unumber ).once('value',function(snapshot){        
         data=snapshot.val();
         console.log(data.account);
-        res.render('orderdata',{title:'訂單寄送資料',logStatus:req.cookies.status,message:'',data :data,cost: req.cookies.totalcost.cost});           
+        res.render('orderdata',{title:'訂單寄送資料',message:'',data :data,cost: req.cookies.totalcost.cost,logStatus: req.cookies.status});           
     })
     
 });
@@ -82,21 +92,30 @@ router.post('/create_order',function(req,res,next){
     
     admin.ref('cart/'+req.cookies.ucart.cartNumber+'/product').once('value',function(snapshot){
         data=snapshot.val();
-        console.log(data);
-        var createOrder = admin.ref('order').push();
+        //console.log(data);            
+        var Today=new Date();
+        console.log("今天日期是 " + Today.getFullYear()+ " 年 " + (Today.getMonth()+1) + " 月 " + Today.getDate() + " 日")
+        var createOrder = admin.ref('order/'+req.cookies.status.uid).push();
         createOrder.set({
-            'account':req.cookies.status.uid,
             'name':req.body.name,
             'phone':req.body.phone,
             'address':req.body.address,
             'totalcost':req.cookies.totalcost.cost,
-            'product':data                
+            'product':data,
+            'date':Today.getFullYear()+'/'+(Today.getMonth()+1)+'/'+Today.getDate()                
         })
-        
+        var remove =admin.ref('cart/' + req.cookies.ucart.cartNumber);
+        remove.remove();
+        res.render('completeorder',{title:'訂單已建立',
+                                    logStatus: req.cookies.status,
+                                    name:req.body.name,
+                                    phone:req.body.phone,
+                                    address:req.body.address,
+                                    cost:req.cookies.totalcost.cost,
+                                    data:data,
+                                    date:Today.getFullYear()+'/'+(Today.getMonth()+1)+'/'+Today.getDate()});
     });
-    //setTimeout(function(){
-    res.render('order',{title:'訂單查詢',logStatus:req.cookies.status});
-    //},1000)
+    
     
 });
 module.exports = router;

@@ -1,0 +1,29 @@
+<% layout('layout') %>
+<div class="center">
+    <h1>訂單已建立</h1>
+    <form action="create_order" method="post">
+        <div>
+            <h2>訂單日期：      <%= date %></h2>
+            <h2>收件人:     <%= name %></h2>
+            <h2>收件人電話: <%= phone %></h2>
+            <h2>收件地址:   <%= address %></h2>            
+            <h2>總金額：    <%= cost %></h2>
+            <table class="cart_table">
+                <tr>
+                    <th>品名</th>
+                    <th>尺寸</th>
+                    <th>數量</th>
+                    <th>價格</th>
+                </tr>
+                <% for(item in data){ %>
+                <tr>
+                    <td><%= data[item].productName %></td>
+                    <td><%= data[item].size %></td>
+                    <td><%= data[item].amount %></td>
+                    <td><%= data[item].price %></td>
+                </tr>            
+                <%}%>   
+            </table>    
+        </div>
+    </form>  
+</div>

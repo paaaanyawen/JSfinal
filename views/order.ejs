@@ -1,1 +1,36 @@
 <% layout('layout') %>
+<div class="center">
+        <% if(logStatus){%>
+            <h1>訂單查詢</h1>
+            <ul>
+            <% for(item in myOrder){ %>
+                <li>
+                    <p>訂單編號：  <%= item %></p>
+                    <p>訂單日期：  <%= myOrder[item].date %></p>
+                    <p>收件人:     <%= myOrder[item].name %></p>
+                    <p>收件人電話: <%= myOrder[item].phone %></p>
+                    <p>收件地址:   <%= myOrder[item].address %></p>                    
+                    <p>總金額：    <%= myOrder[item].totalcost %></p>
+                    <table class="cart_table">
+                            <tr>
+                                <th>品名</th>
+                                <th>尺寸</th>
+                                <th>數量</th>
+                                <th>價格</th>
+                            </tr>
+                            <% for(pitem in  myOrder[item].product){ %>
+                            <tr>
+                                <td><%= myOrder[item].product[pitem].productName %></td>
+                                <td><%= myOrder[item].product[pitem].size %></td>
+                                <td><%= myOrder[item].product[pitem].amount %></td>
+                                <td><%= myOrder[item].product[pitem].price %></td>
+                            </tr>            
+                            <%}%>   
+                        </table>
+                </li>
+            <%}%>
+            </ul>
+        <%}else{%>
+            <h2 style="coloe:red"><%=message%></h2>
+        <%}%>
+</div>
