@@ -17,12 +17,11 @@ router.post('/do_register', function(req, res, next) {
             admin.ref('user').once('value',function(snapshot){
                 var list=snapshot.val();
                 var result=1;
-                console.log(list);
+                //console.log(list);
                 for(item in list){
                     //比對帳號
                     if(req.body.uid == list[item].account){                            
-                        res.render('register',{title: '註冊',message: '此帳號已有人使用',logStatus: req.cookies.status});
-                    
+                        res.render('register',{title: '註冊',message: '此帳號已有人使用',logStatus: req.cookies.status});                    
                         result=0;
                     }                    
                 }

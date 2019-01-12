@@ -1,18 +1,41 @@
 <% layout('layout') %>
-<div class="product_page">
-    <img src="/images/yeezy700.jpg" alt="">
-    
-    <h1>yeezy700</h1>
-    <p>價格：150</p>
-    <p>尺寸(UK)</p>
-    <select name="" class="size" id="">
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-    </select>
-    <input type="button" value="加入購物車">
-    <div class="clear"></div>
-</div>
+<form action="add_cart" method="post">
+    <body>
+        <div class="center">
+            <div class="product_page">
+                <img src="/images/yeezy700.jpg" alt=""> 
+            </div> 
+            <div class="clear"></div>
+            <div>      
+                <h1>yeezy700</h1>
+                <p>價格：150</p>
+                <input type="hidden" name="productName" value="yeezy700">
+                <input type="hidden" name="price" value="150">
+                <p>尺寸(UK)</p>
+                <select name="size" class="size" id="">
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <p>數量</p>
+                <select name="amount" class="amount" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>               
+                </select>
+                <input type="submit" value="加入購物車">
+                <p style="color:red"><%= message %></p>                
+            </div>
+        </div>    
+    </body>
+</form>

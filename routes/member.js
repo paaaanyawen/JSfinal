@@ -65,8 +65,7 @@ router.post('/delete_cart',function(req,res,next){
     var remove =admin.ref('cart/' + req.body.item + '/product/' + req.body.pitem);
 	remove.remove();
     var totalcost=0;    
-    res.render('cart', { title: '購物車',logStatus: req.cookies.status,message:'',trdata:'<meta http-equiv="refresh" content="0;url=/member/cart" />',totalcost:totalcost });
-    
+    res.render('cart', { title: '購物車',logStatus: req.cookies.status,message:'',trdata:'<meta http-equiv="refresh" content="0;url=/member/cart" />',totalcost:totalcost });    
 });
 
 router.post('/set_order',function(req,res,next){
@@ -96,7 +95,7 @@ router.post('/create_order',function(req,res,next){
         
     });
     //setTimeout(function(){
-        res.render('order',{title:'訂單查詢',logStatus:req.cookies.status});
+    res.render('order',{title:'訂單查詢',logStatus:req.cookies.status});
     //},1000)
     
 });

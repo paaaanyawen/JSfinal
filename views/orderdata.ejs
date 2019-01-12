@@ -5,11 +5,11 @@
         <form action="create_order" method="post">
             <div>
                 <h2>收件人</h2>
-                <input id="name" type="text" name="name" value="<%- data.name %>">
+                <input class="inputext" type="text" name="name" value="<%- data.name %>">
                 <h2>收件人電話</h2>
-                <input id="phone" type="text" name="phone" value="<%- data.phone %>">
+                <input class="inputext" type="text" name="phone" value="<%- data.phone %>">
                 <h2>收件地址</h2>
-                <input id="add" type="text" name="address" value="<%- data.address %>">
+                <input class="inputext" type="text" name="address" value="<%- data.address %>">
                 <h2>總金額：<%= cost%></h2>        
                 <input type="submit" value="確定">               
             </div>

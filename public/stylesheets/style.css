@@ -65,3 +65,10 @@ header{
 .setOrder{
   float: right;
 }
+.inputext{
+  border: hidden;
+  width: 300px;
+  border-width:1px; 
+  border-bottom-style: solid ;
+  border-bottom-color: rgb(110, 107, 107);
+}

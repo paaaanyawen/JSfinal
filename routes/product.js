@@ -32,7 +32,7 @@ router.post('/add_cart', function (req, res, next){
 
                     //同商品&&同尺寸 加上數量
                     for(pitem in list[item].product){
-                        if(list[item].product[pitem].productName == "yeezy350" && list[item].product[pitem].size == req.body.size){                        
+                        if(list[item].product[pitem].productName == req.body.productName && list[item].product[pitem].size == req.body.size){                        
                             pkey=1;
                             //console.log("same" + pkey);
                             admin.ref('/cart/'+item+'/product/'+pitem).update({
@@ -43,8 +43,8 @@ router.post('/add_cart', function (req, res, next){
                     if(pkey == 0){
                         //console.log("not same" + pkey);
                         admin.ref('/cart/'+item+'/product').push({                    
-                            "productName":"yeezy350",
-                            "price":"200",
+                            "productName":req.body.productName,
+                            "price":req.body.price,
                             "size":req.body.size,
                             "amount":req.body.amount                    
                         }) 
@@ -57,8 +57,8 @@ router.post('/add_cart', function (req, res, next){
                     "account":req.cookies.status.uid,
                     "product":{
                         0:{
-                            "productName":"yeezy350",
-                            "price":"200",
+                            "productName":req.body.productName,
+                            "price":req.body.price,
                             "size":req.body.size,
                             "amount":req.body.amount
                         }
@@ -66,9 +66,9 @@ router.post('/add_cart', function (req, res, next){
                 })               
             }
         })        
-        res.render('yeezy350', { title: 'yeezy350',logStatus: req.cookies.status,message:'' });
+        res.render(req.body.productName, { title: req.body.productName,logStatus: req.cookies.status,message:'' });
     }else{
-        res.render('yeezy350', { title: '登入',logStatus: req.cookies.status, message:'請先登入' });
+        res.render(req.body.productName, { title: '登入',logStatus: req.cookies.status, message:'請先登入' });
     }
 })
 module.exports = router;
