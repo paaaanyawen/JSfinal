@@ -84,21 +84,20 @@ router.post('/create_order',function(req,res,next){
     admin.ref('cart/'+req.cookies.ucart.cartNumber+'/product').once('value',function(snapshot){
         data=snapshot.val();
         console.log(data);
-        for(item in data){
-            var createOrder = admin.ref('order').push();
-            createOrder.set({
-                'account':req.cookies.uid,
-                'name':req.body.name,
-                'phone':req.body.phone,
-                'address':req.body.address,
-                'totalcost':req.cookies.totalcost.cost,
-                'product':data                
-            })
-        }
+        var createOrder = admin.ref('order').push();
+        createOrder.set({
+            'account':req.cookies.status.uid,
+            'name':req.body.name,
+            'phone':req.body.phone,
+            'address':req.body.address,
+            'totalcost':req.cookies.totalcost.cost,
+            'product':data                
+        })
+        
     });
-    setTimeout(function(){
+    //setTimeout(function(){
         res.render('order',{title:'訂單查詢',logStatus:req.cookies.status});
-    },1000)
+    //},1000)
     
 });
 module.exports = router;
