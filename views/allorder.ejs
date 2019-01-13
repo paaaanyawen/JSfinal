@@ -1,7 +1,7 @@
 <% layout('layout') %>
 <div class="center">
-    <% if(logStatus){%>
-        <h1><%= message %></h1>
+    <h1><%= message %></h1>
+    <% if(logStatus && identity=="admin"){%>        
         <ul>
         <% for(item in order){ %>
             <li>
@@ -33,7 +33,5 @@
             </li>
         <%}%>
         </ul>
-    <%}else{%>
-        <h2 style="coloe:red"><%=message%></h2>
     <%}%>
 </div>
