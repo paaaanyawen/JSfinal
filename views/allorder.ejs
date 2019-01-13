@@ -1,0 +1,39 @@
+<% layout('layout') %>
+<div class="center">
+    <% if(logStatus){%>
+        <h1><%= message %></h1>
+        <ul>
+        <% for(item in order){ %>
+            <li>
+                <p>訂購人:     <%= item %></p>
+                <% for(litem in order[item]){ %>
+                    <p>訂單編號：  <%= litem %></p>
+                    <p>訂單日期：  <%= order[item][litem].date %></p>
+                    <p>收件人:     <%= order[item][litem].name %></p>
+                    <p>收件人電話: <%= order[item][litem].phone %></p>
+                    <p>收件地址:   <%= order[item][litem].address %></p>                    
+                    <p>總金額：    <%= order[item][litem].totalcost %></p>
+                    <table class="cart_table">
+                        <tr>
+                            <th>品名</th>
+                            <th>尺寸</th>
+                            <th>數量</th>
+                            <th>價格</th>
+                        </tr>
+                        <% for(pitem in  order[item][litem].product){ %>
+                        <tr>
+                            <td><%= order[item][litem].product[pitem].productName %></td>
+                            <td><%= order[item][litem].product[pitem].size %></td>
+                            <td><%= order[item][litem].product[pitem].amount %></td>
+                            <td><%= order[item][litem].product[pitem].price %></td>
+                        </tr>            
+                        <%}%>   
+                    </table>
+                <%}%>
+            </li>
+        <%}%>
+        </ul>
+    <%}else{%>
+        <h2 style="coloe:red"><%=message%></h2>
+    <%}%>
+</div>

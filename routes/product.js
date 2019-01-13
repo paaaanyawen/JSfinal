@@ -4,15 +4,15 @@ var admin = require("../service/firedata");
 
 /* GET home page. */
 router.get('/yeezy350', function (req, res, next) {
-    res.render('yeezy350', { title: 'yeezy350',logStatus: req.cookies.status,message:'' });
+    res.render('yeezy350', { title: 'yeezy350',logStatus: req.cookies.status,message:'',identity:req.cookies.status.uidentity });
 
 });
 router.get('/yeezy350v2', function (req, res, next) {
-    res.render('yeezy350v2', { title: 'yeezy350v2',logStatus: req.cookies.status,message:'' });
+    res.render('yeezy350v2', { title: 'yeezy350v2',logStatus: req.cookies.status,message:'' ,identity:req.cookies.status.uidentity});
 
 });
 router.get('/yeezy700', function (req, res, next) {
-    res.render('yeezy700', { title: 'yeezy350700',logStatus: req.cookies.status ,message:''});
+    res.render('yeezy700', { title: 'yeezy350700',logStatus: req.cookies.status ,message:'',identity:req.cookies.status.uidentity});
 
 });
 
@@ -66,9 +66,9 @@ router.post('/add_cart', function (req, res, next){
                 })               
             }
         })        
-        res.render(req.body.productName, { title: req.body.productName,logStatus: req.cookies.status,message:'' });
+        res.render(req.body.productName, { title: 'yeezy350',logStatus: req.cookies.status,message:'',identity:req.cookies.status.uidentity });
     }else{
-        res.render(req.body.productName, { title: '登入',logStatus: req.cookies.status, message:'請先登入' });
+        res.render('yeezy350', { title: '登入',logStatus: req.cookies.status, message:'請先登入',identity:req.cookies.status.uidentity });        
     }
 })
 module.exports = router;

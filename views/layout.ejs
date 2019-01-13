@@ -12,17 +12,22 @@
         <a href="/">
             <img id="logo" src="/images/logo.png" alt="logo" onclick="index.ejs" >
         </a>
-        
-        
         <%if( logStatus ){%>
-            <ul class="header_list logouttype">  
-                    <a href="/member/profile"><li>會員資料</li></a>
-                    <a href="/member/order"><li>訂單查詢</li></a>                      
-                    <a href="/member/cart"><li>購物車</li></a>
-                    <a href="/do_logout"><li>登出</li></a>                    
-            </ul>
-            <div class="clear"></div>
-        <%}else{%>
+            <%if(identity == "admin"){%>
+                <ul class="header_list logouttype">  
+                        <a href="/allorder"><li>所有訂單資料</li></a>
+                        <a href="/do_logout"><li>登出</li></a>                                       
+                </ul>
+                <div class="clear"></div>
+            <%}else{%>
+                <ul class="header_list logouttype">  
+                        <a href="/member/profile"><li>會員資料</li></a>
+                        <a href="/member/order"><li>訂單查詢</li></a>                      
+                        <a href="/member/cart"><li>購物車</li></a>
+                        <a href="/do_logout"><li>登出</li></a>                    
+                </ul>
+                <div class="clear"></div>
+        <%}}else{%>
             <ul class="header_list logintype">
                 <a href="/login"><li>登入</li></a>
                 <a href="/register"><li>註冊</li></a>
