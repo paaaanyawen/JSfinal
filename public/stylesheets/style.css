@@ -74,7 +74,7 @@ html{
   width:300px;
   text-align: center;
   float: left;
-  margin-top:10%;
+  margin-top:7%;
 }
 .in p{
   color:rgb(49, 4, 4);
@@ -116,6 +116,9 @@ html{
   margin-right: 10%;
   font-size: 30px;
 }
+.setOrder{
+  font-size:15px;
+}
 .inputext{
   border: hidden;
   font-size: 20px;
@@ -143,4 +146,24 @@ html{
 .register h1{
   font-size: 30px;
   color:rgb(82, 50, 12);
+}
+.btn{
+  border: none;
+  font-family: "微軟正黑體";
+  font-size: 18px;
+  height: 40px;
+  width: 70px;
+  border-radius:10px;
+  color: white;
+  background-color: rgb(63, 37, 3);
+  font-weight: bold;
+}
+.btn:hover{
+  color:  rgb(63, 37, 3);
+  background-color:white;
+  border: solid;
+}
+.addcart{
+  width: 120px;
+  font-size: 12px;
 }
