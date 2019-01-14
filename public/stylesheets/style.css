@@ -4,37 +4,46 @@ body {
   font-family: "微軟正黑體"
 }
 a{
-  color: #000000;
+  color: rgb(142, 140, 148);
 }
+
 header{
-  background-color: #000000;
+  background-color: #3f3131;
+  
 }
 #logo{
-  padding: 10px;
+  padding: 20px;
   height: 60px;
-}
+} 
 .header_list{
   float:right;
-  line-height: 60px;
+  line-height: 70px;
   padding-right: 30px;
 }
 .header_list li{
   float: left;
   list-style-type:none ;
-  padding-right: 5px;
+  padding-right: 20px;
   font-size: 20px;
   font-family:"微軟正黑體";
   color: white;
+
+}
+.header_list li:hover{
+  font-size:25px;
+  color:rgb(146, 161, 109);
 }
 .clear{
   clear: both;
 }
 .center{
-  width:60% ;
-  margin: 0 auto;
+  display: block;
+}
+html{
+  background-color: rgb(252, 243, 231);
 }
 .product{
-  position: relative;
+  
   float: left;
   width: 30%;
   padding:1.65%;
@@ -45,32 +54,93 @@ header{
 }
 .product p{
   font-size: 20px;
-  position: absolute;
+  text-align: center;
   left: 35%;
 
 }
-.product_page img{
-  width: 300px;
+.product_page{
+  width:500px;
   float: left;
+  text-align: center;
+  margin-left:20%;
+  margin-top:10%;
+}
+.product_page img{
+  width: 400px;
+  border: 1px solid;
+}
+.in{
+  display: block;
+  width:300px;
+  text-align: center;
+  float: left;
+  margin-top:10%;
+}
+.in p{
+  color:rgb(49, 4, 4);
+}
+.in h1{
+  font-size: 45px;
+  color:rgb(49, 4, 4);
 }
 .cart_table{
   padding: 30px;
+  background-color: blanchedalmond;
+  width:800px;
 }
 .cart_table th{
-  border-bottom-style: solid;
+  border-bottom-style: solid ;
   width: 3%;
+  color:rgb(82, 50, 12);
 }
 .cart_table td{
   text-align: center;
   height:40px;
 }
+.dart_table{
+  padding: 30px;
+  background-color: blanchedalmond;
+  width:800px;
+}
+.dart_table th{
+  border-bottom-style: solid ;
+  width: 20%;
+  color:rgb(82, 50, 12);
+}
+.dart_table td{
+  text-align: center;
+  height:40px;
+}
 .setOrder{
   float: right;
+  margin-right: 10%;
+  font-size: 30px;
 }
 .inputext{
   border: hidden;
+  font-size: 20px;
   width: 300px;
   border-width:1px; 
   border-bottom-style: solid ;
   border-bottom-color: rgb(110, 107, 107);
+  background-color:rgb(110, 107, 107,0);
+  color:rgb(102, 62, 13);
+  margin-left: 10px;
+}
+.profile{
+  margin:10%;
+   color: rgb(82, 50, 12);
+}
+.profile h1{
+  font-size: 40px;
+}
+.profile p{
+  font-size:35px;
+}
+.register{
+  margin:5%;
+}
+.register h1{
+  font-size: 30px;
+  color:rgb(82, 50, 12);
 }

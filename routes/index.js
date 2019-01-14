@@ -4,7 +4,11 @@ var admin = require('../service/firedata')
 var logStatus = false;
 /* GET home page. */
 router.get('/register', function(req, res, next) {
-    res.render('register', { title: '註冊',message :'',logStatus: req.cookies.status,identity:req.cookies.status.uidentity });
+    if(logStatus){
+        res.render('register', { title: '註冊',message :'',logStatus: req.cookies.status,identity:req.cookies.status.uidentity });
+    }else{
+        res.render('register', { title: '註冊',message :'',logStatus: req.cookies.status,identity:"" });
+    }
 })
 router.post('/do_register', function(req, res, next) {
     console.log(req.body.uid)
@@ -21,7 +25,7 @@ router.post('/do_register', function(req, res, next) {
                 for(item in list){
                     //比對帳號
                     if(req.body.uid == list[item].account){                            
-                        res.render('register',{title: '註冊',message: '此帳號已有人使用',logStatus: req.cookies.status,identity:req.cookies.status.uidentity});                    
+                        res.render('register',{title: '註冊',message: '此帳號已有人使用',logStatus: req.cookies.status,identity:""});                    
                         result=0;
                     }                    
                 }
@@ -36,7 +40,7 @@ router.post('/do_register', function(req, res, next) {
                         "identity":"user"
                     })
                     //傳到登入頁面
-                    res.render('login', { title: '登入',message :'',logStatus: req.cookies.status,identity:req.cookies.status.uidentity });                       
+                    res.render('login', { title: '登入',message :'',logStatus: req.cookies.status,identity:"" });                       
                 }
             })
             
@@ -44,13 +48,15 @@ router.post('/do_register', function(req, res, next) {
         else
         {           
             //傳到他要去的頁面
-            res.render('register', { title: '註冊',message:'請填寫完整!',logStatus: req.cookies.status,identity:req.cookies.status.uidentity });
+            res.render('register', { title: '註冊',message:'請填寫完整!',logStatus: req.cookies.status,identity:"" });
         }
     
 })
-router.get('/login', function (req, res, next) {
-    res.render('login', { title: '登入',message :'',logStatus: req.cookies.status ,identity:req.cookies.status.uidentity});
-
+router.get('/login', function (req, res, next) {    
+    if(logStatus)
+        res.render('login', { title: '登入',message :'',logStatus: req.cookies.status ,identity:req.cookies.status.uidentity});
+    else
+        res.render('login', { title: '登入',message :'',logStatus: req.cookies.status ,identity:""});    
 });
 router.post('/do_login', function(req, res, next){
      admin.ref('user').once('value',function(snapshot){
@@ -71,18 +77,21 @@ router.post('/do_login', function(req, res, next){
                     console.log(req.cookies.status);
                     res.render('index', { title: '首頁', logStatus: logStatus,identity:list[item].identity});
                 }else{
-                    res.render('login', { title: '登入',message :'密碼錯誤' ,logStatus: req.cookies.status,identity:req.cookies.status.uidentity});
+                    res.render('login', { title: '登入',message :'密碼錯誤' ,logStatus: req.cookies.status,identity:""});
                 }
             }
         }
         if(accCheck==0){
-            res.render('login', { title: '登入',message :'無此帳號' ,logStatus: req.cookies.status,identity:req.cookies.status.uidentity});
+            res.render('login', { title: '登入',message :'無此帳號' ,logStatus: req.cookies.status,identity:""});
         }
     })
     
 })
 router.get('/', function(req, res, next) {
-    res.render('index',{title: '首頁',logStatus: req.cookies.status,identity:req.cookies.status.uidentity})
+    if(logStatus)
+        res.render('index',{title: '首頁',logStatus: req.cookies.status,identity:req.cookies.status.uidentity})
+    else
+        res.render('index',{title: '首頁',logStatus: req.cookies.status,identity:""})
 });
 
 
@@ -92,7 +101,8 @@ router.get('/do_logout', function (req, res, next) {
     res.render('login',
                 { title: '登出成功' ,
                     logStatus: logStatus,
-                    message: '',identity:req.cookies.status.uidentity});
+                    message: '',
+                    identity:""});
     
 });
 

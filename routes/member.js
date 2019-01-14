@@ -4,16 +4,26 @@ var admin = require("../service/firedata");
 
 /* GET home page. */
 router.get('/profile', function (req, res, next) {
-    var data;
-    admin.ref('user/'+req.cookies.status.unumber ).once('value',function(snapshot){        
-        data=snapshot.val();
-        console.log(data.account);
+    if(req.cookies.status){
+        var data;
+        admin.ref('user/'+req.cookies.status.unumber ).once('value',function(snapshot){        
+            data=snapshot.val();
+            console.log(data.account);
+            res.render('profile', 
+            { title: '會員資料',
+            data :data,
+            logStatus: req.cookies.status,
+            identity:req.cookies.status.uidentity,
+            message:'會員資料' });
+        })  
+    }else{
         res.render('profile', 
-        { title: '會員資料',
-        data :data,
-        logStatus: req.cookies.status
-        ,identity:req.cookies.status.uidentity });
-    })  
+            { title: '會員資料',
+            data :data,
+            logStatus: req.cookies.status,
+            identity:"",
+            message:'請先登入' });
+    }
 });
 
 router.get('/order', function (req, res, next) {
@@ -27,7 +37,10 @@ router.get('/order', function (req, res, next) {
                                 ,identity:req.cookies.status.uidentity});
         })        
     }else{
-        res.render('order', { title: '訂單查詢',logStatus: req.cookies.status, message:'請先登入',identity:req.cookies.status.uidentity });
+        res.render('order', { title: '訂單查詢',
+                                logStatus: req.cookies.status,
+                                 message:'請先登入',
+                                 identity:"" });
     } 
 });
 
@@ -67,7 +80,7 @@ router.get('/cart', function (req, res, next) {
             res.render('cart', { title: '購物車',logStatus: req.cookies.status,message:'',trdata:str,totalcost:totalcost,identity:req.cookies.status.uidentity });
         })
     }else{
-        res.render('cart', { title: '購物車',logStatus: req.cookies.status, message:'請先登入',trdata:'',totalcost:'',identity:req.cookies.status.uidentity });
+        res.render('cart', { title: '購物車',logStatus: req.cookies.status, message:'請先登入',trdata:'',totalcost:'',identity:"" });
     }
      
 });
@@ -75,19 +88,36 @@ router.get('/cart', function (req, res, next) {
 router.post('/delete_cart',function(req,res,next){
     console.log(req.body.item+"  "+req.body.pitem);
     var remove =admin.ref('cart/' + req.body.item + '/product/' + req.body.pitem);
-	remove.remove();
-    var totalcost=0;    
-    res.render('cart', { title: '購物車',logStatus: req.cookies.status,message:'',trdata:'<meta http-equiv="refresh" content="0;url=/member/cart" />',totalcost:totalcost,identity:req.cookies.status.uidentity });    
+    remove.remove();
+    totalcost=0;
+    res.render('cart', { title: '購物車',
+                        logStatus: req.cookies.status,message:'',
+                        trdata:'<meta http-equiv="refresh" content="0;url=/member/cart" />',
+                        totalcost:totalcost,
+                        identity:req.cookies.status.uidentity });    
 });
 
 router.post('/set_order',function(req,res,next){
     var data;
-    admin.ref('user/'+req.cookies.status.unumber ).once('value',function(snapshot){        
-        data=snapshot.val();
-        console.log(data.account);
-        res.render('orderdata',{title:'訂單寄送資料',message:'',data :data,cost: req.cookies.totalcost.cost,logStatus: req.cookies.status,identity:req.cookies.status.uidentity});           
-    })
-    
+    if(req.cookies.totalcost.cost == "0"){
+        res.render('cart', { title: '購物車',
+                            logStatus: req.cookies.status,
+                            message:'購物車內沒有商品',
+                            trdata:"",
+                            totalcost:req.cookies.totalcost.cost,
+                            identity:req.cookies.status.uidentity });
+    }else{
+        admin.ref('user/'+req.cookies.status.unumber ).once('value',function(snapshot){        
+            data=snapshot.val();
+            console.log(data.account);
+            res.render('orderdata',{title:'訂單寄送資料',
+                                    message:'',
+                                    data :data,
+                                    cost: req.cookies.totalcost.cost,
+                                    logStatus: req.cookies.status,
+                                    identity:req.cookies.status.uidentity});           
+        })
+    }
 });
 
 router.post('/create_order',function(req,res,next){
@@ -115,7 +145,8 @@ router.post('/create_order',function(req,res,next){
                                     address:req.body.address,
                                     cost:req.cookies.totalcost.cost,
                                     data:data,
-                                    date:Today.getFullYear()+'/'+(Today.getMonth()+1)+'/'+Today.getDate()});
+                                    date:Today.getFullYear()+'/'+(Today.getMonth()+1)+'/'+Today.getDate(),
+                                    identity:req.cookies.status.uidentity});
     });
     
     

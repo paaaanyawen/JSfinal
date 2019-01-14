@@ -1,43 +1,41 @@
 <% layout('layout') %>
-
-    <body>
-        <div class="center">
-            <div class="product_page">
-                <img src="/images/yeezy350.jpg" alt=""> 
-            </div> 
-            <div class="clear"></div>  
-            <form action="add_cart" method="post">
-                <div>      
-                    <h1>yeezy350</h1>
-                    <p>價格：200</p>
-                    <input type="hidden" name="productName" value="yeezy350">
-                    <input type="hidden" name="price" value="200">
-                    <p>尺寸(UK)</p>
-                    <select name="size" class="size" id="">
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <p>數量</p>
-                    <select name="amount" class="amount" id="">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>               
-                    </select>
-                    <input type="submit" value="加入購物車">
-                    <p style="color:red"><%= message %></p>                    
-                </div>
-            </form>            
-        </div>     
-    </body>
-
+<form action="add_cart" method="post">
+<body>
+    <div class="center">
+        <div class="product_page">
+            <img src="/images/yeezy350.jpg" alt=""> 
+        </div> 
+        
+            <div class="in">      
+                <h1>yeezy350</h1>
+                <p>價格：200</p>
+                <input type="hidden" name="productName" value="yeezy350">
+                <input type="hidden" name="price" value="200">
+                <p>尺寸(UK)</p>
+                <select name="size" class="size" id="">
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <p>數量</p>
+                <select name="amount" class="amount" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>               
+                </select>
+                <input type="submit" value="加入購物車">
+                <p style="color:red"><%= message %></p>                    
+            </div>
+        </form>            
+    </div>
+</body>
