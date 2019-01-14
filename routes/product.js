@@ -4,23 +4,25 @@ var admin = require("../service/firedata");
 
 /* GET home page. */
 router.get('/yeezy350', function (req, res, next) {
-    if(req.cookies.status)
+    if(req.cookies.status){
         res.render('yeezy350', { title: 'yeezy350',logStatus: req.cookies.status,message:'',identity:req.cookies.status.uidentity });
-    else
+    }else{
         res.render('yeezy350', { title: 'yeezy350',logStatus: req.cookies.status,message:'',identity:"" });
+    }
 });
 router.get('/yeezy350v2', function (req, res, next) {
-    if(req.cookies.status)
+    if(req.cookies.status){
         res.render('yeezy350v2', { title: 'yeezy350v2',logStatus: req.cookies.status,message:'',identity:req.cookies.status.uidentity });
-    else
+    }else{
         res.render('yeezy350v2', { title: 'yeezy350v2',logStatus: req.cookies.status,message:'',identity:"" });
-
+    }
 });
 router.get('/yeezy700', function (req, res, next) {
-    if(req.cookies.status)
+    if(req.cookies.status){
         res.render('yeezy700', { title: 'yeezy700',logStatus: req.cookies.status,message:'',identity:req.cookies.status.uidentity });
-    else
+    }else{
         res.render('yeezy700', { title: 'yeezy700',logStatus: req.cookies.status,message:'',identity:"" });
+    }
 });
 
 router.post('/add_cart', function (req, res, next){
@@ -75,7 +77,7 @@ router.post('/add_cart', function (req, res, next){
         })        
         res.render(req.body.productName, { title: req.body.productName,logStatus: req.cookies.status,message:'',identity:req.cookies.status.uidentity });
     }else{
-        res.render(req.body.productName, { title: '登入',logStatus: req.cookies.status, message:'請先登入',identity:req.cookies.status.uidentity });        
+        res.render(req.body.productName, { title: req.body.productName,logStatus: req.cookies.status, message:'請先登入',identity:"" });        
     }
 })
 module.exports = router;

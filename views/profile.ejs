@@ -1,13 +1,15 @@
 <% layout('layout') %>
 <div class="center">
-    <h1><%=message%></h1>    
-    <% if(logStatus){%>
+    <% if(logStatus){%>      
         <div class="profile">
+                <h1><%=message%></h1>
             <p>帳號：<%- data.account %></p>
             <p>姓名：<%- data.name %></p>
             <p>電話：<%- data.phone %></p>
             <p>地址：<%- data.address %></p>
         </div>
+    <%}else{%>
+        <h2><%=message%></h2>
     <%}%>
 </div>
 
