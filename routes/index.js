@@ -5,7 +5,7 @@ var logStatus = false;
 var identity = false;
 /* GET home page. */
 router.get('/register', function(req, res, next) {
-    if(logStatus){
+    if(logStatus == true){
         res.render('register', { title: '註冊',message :'',logStatus: req.cookies.status,identity:req.cookies.status.uidentity });
     }else{
         res.render('register', { title: '註冊',message :'',logStatus: req.cookies.status,identity:"" });
@@ -54,7 +54,7 @@ router.post('/do_register', function(req, res, next) {
     
 })
 router.get('/login', function (req, res, next) {    
-    if(logStatus){
+    if(logStatus == true){
         res.render('login', { title: '登入',message :'',logStatus: req.cookies.status ,identity:req.cookies.status.uidentity});
     }else{
         res.render('login', { title: '登入',message :'',logStatus: req.cookies.status ,identity:""});    
@@ -90,7 +90,7 @@ router.post('/do_login', function(req, res, next){
     
 })
 router.get('/', function(req, res, next) {
-    if(logStatus){
+    if(logStatus == true){
         res.render('index',{title: '首頁',logStatus: req.cookies.status,identity:req.cookies.status.uidentity})
     }
     else{
