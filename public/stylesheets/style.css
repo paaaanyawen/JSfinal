@@ -116,9 +116,7 @@ html{
   margin-right: 10%;
   font-size: 30px;
 }
-.setOrder{
-  font-size:15px;
-}
+
 .inputext{
   border: hidden;
   font-size: 20px;
@@ -166,4 +164,8 @@ html{
 .addcart{
   width: 120px;
   font-size: 12px;
+}
+.set{
+  width:100px;
+  font-size:15px;
 }
