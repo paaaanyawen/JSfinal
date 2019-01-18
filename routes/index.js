@@ -90,12 +90,29 @@ router.post('/do_login', function(req, res, next){
     
 })
 router.get('/', function(req, res, next) {
-    if(logStatus == true){
-        res.render('index',{title: '首頁',logStatus: req.cookies.status,identity:req.cookies.status.uidentity})
-    }
-    else{
-        res.render('index',{title: '首頁',logStatus: req.cookies.status,identity:""})
-    }
+    admin.ref('product').once('value',function(snapshot){
+        var myOrder=snapshot.val();
+        if(logStatus == true){
+            res.render('index',{title: '首頁',
+                                logStatus: req.cookies.status,
+                                identity:req.cookies.status.uidentity,
+                                message:'',
+                                myOrder:myOrder})
+        }
+        else{
+            res.render('index',{title: '首頁',
+                                logStatus: req.cookies.status,
+                                identity:"",
+                                message:'',
+                                myOrder:myOrder})
+        }
+        // res.render('index', {
+                           
+        //                     message:'',
+        //                     myOrder:myOrder
+        //                     });
+    })        
+    
 });
 
 

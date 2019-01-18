@@ -1,21 +1,15 @@
+
 <% layout('layout') %>
+
 <div>
-    <a href="/product/yeezy350">
+        <% for(item in myOrder){ %>
+    <a href="/product/<%= item %>">
         <div class="product">
-            <img src="/images/yeezy350.jpg" alt="">
-            <p>yeezy350 $200</p>            
+            <img src="/images/<%= item %>.jpg" alt=""> 
+            <p><%= item %> $<%= myOrder[item].price %></p>    
+                
         </div>
-    </a>
-    <a href="/product/yeezy350v2">
-        <div class="product">
-            <img src="/images/yeezy350v2.jpg" alt="">
-            <p>yeezy350v2 $100</p>        
-        </div>
-    </a>
-    <a href="/product/yeezy700">
-        <div class="product">
-            <img src="/images/yeezy700.jpg" alt="">
-            <p>yeezy700 $150</p>        
-        </div>
-    </a>
+    </a>       
+    
+    <%}%>
 </div>

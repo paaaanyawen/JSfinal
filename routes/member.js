@@ -151,4 +151,16 @@ router.post('/create_order',function(req,res,next){
     
     
 });
+// router.get('.. /', function (req, res, next) {
+  
+//     admin.ref('product').once('value',function(snapshot){
+//         var myOrder=snapshot.val();
+//         res.render('index', {
+                           
+//                             message:'',
+//                             myOrder:myOrder
+//                             });
+//     })        
+
+// });
 module.exports = router;
